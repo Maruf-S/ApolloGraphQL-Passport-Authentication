@@ -1,0 +1,17 @@
+{
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all",
+  "editor.fontFamily": "Fira Code, Consolas, 'Courier New', monospace",
+  "files.exclude": {
+    "**/*.js": {
+      "when": "$(basename).ts"
+    },
+    "**/*.js.map": {
+      "when": "$(basename)"
+    }
+  },
+  "prettier.tslintIntegration": true,
+  "cSpell.words": ["Meda"]
+}
