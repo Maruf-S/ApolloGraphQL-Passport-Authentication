@@ -25,7 +25,7 @@ export default class Server {
 
   async initialize(app) {
     await this.config(app);
-    new Routes(app);
+    // new Routes(app);
   }
 
   public async config(app: Application): Promise<void> {
