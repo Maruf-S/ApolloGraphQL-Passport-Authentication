@@ -52,9 +52,9 @@ export default class Server {
     // app.use('/', estatic(path.join(__dirname, '../../../frontend/build')));
     // app.use(helmet());
     app.use(rateLimiter()); //  apply to all requests
-    app.use(passport.initialize());
+    // app.use(passport.initialize());
 
-    passportMiddleware(passport);
+    // passportMiddleware(passport);
     app.use('/graphql', expressMiddleware(server));
     // app.use(unCaughtErrorHandler);
   }

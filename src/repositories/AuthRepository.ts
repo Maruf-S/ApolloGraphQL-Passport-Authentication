@@ -6,30 +6,10 @@ class AuthRepository {
   constructor() {}
   async getUserById(
     id: number,
-    select: any// Prisma.UserSelect | undefined
-  ): Promise<any> {
-    return await prisma?.user.findUnique({
-      where: {
-        id,
-      },
-      select: select,
-    });
-  }
-  async createUser({ name, password }: { name: string; password: string }) {
-    return await prisma?.user.create({
-      data: {
-        name,
-        password,
-      },
-    });
-  }
-  async getUserByName(name: string) {
-    return await prisma?.user.findFirst({
-      where: {
-        name,
-      },
-    });
-  }
+    select: any // Prisma.UserSelect | undefined
+  ): Promise<any> {}
+  async createUser({ name, password }: { name: string; password: string }) {}
+  async getUserByName(name: string) {}
   async UpdateUser(
     id: number,
     {
@@ -37,30 +17,12 @@ class AuthRepository {
     }: {
       name: string;
     }
-  ) {
-    return await prisma?.user.update({
-      where: {
-        id: id,
-      },
-      data: {
-        name,
-      },
-    });
-  }
+  ) {}
   async comparePassword(password, hash) {
     // Check weather or not the passwords match
     return await compare(password, hash);
   }
-  async changePassword({ id, password }: { id: number; password: string }) {
-    await prisma?.user.update({
-      where: {
-        id: id,
-      },
-      data: {
-        password: await hashPassword(password),
-      },
-    });
-  }
+  async changePassword({ id, password }: { id: number; password: string }) {}
 }
 
 export default new AuthRepository();
