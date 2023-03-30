@@ -8,14 +8,15 @@ const options = {
   secretOrKey: jwtSecret,
 };
 async function checkUserExists(id: number) {
-  let user;
-  user = await prisma.user.findUnique({
+  const userExists = await prisma.user.findUnique({
     include: { UsersAndRoles: true },
     where: {
       id,
     },
   });
-  return user;
+  return !userExists
+    ? undefined
+    : { ...userExists, roles: userExists.UsersAndRoles.map((e) => e.roleName) };
 }
 export default (passport) => {
   passport.use(

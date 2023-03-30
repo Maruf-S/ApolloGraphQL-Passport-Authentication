@@ -1,7 +1,7 @@
 import passport from 'passport';
 import { GraphQLError } from 'graphql';
 
-export default function authMiddleware<
+export default function authenticationMiddleware<
   ParentType = any,
   ArgsType = any,
   ContextType = any,

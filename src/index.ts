@@ -5,18 +5,18 @@ import * as fs from 'fs';
 import { WriteStream } from 'fs';
 import * as path from 'path';
 
-import rateLimiter from './middlewares/rateLimit';
+import rateLimiter from './middlewares/rate.limit.middleware';
 import { unCaughtErrorHandler } from './handlers/errorHandler';
 import Routes from './routes';
 import passport from 'passport';
-import passportMiddleware from './middlewares/passport';
+import passportMiddleware from './middlewares/passport.middleware';
 import logger from './logger';
 import cors from 'cors';
 import helmet = require('helmet');
 import { ApolloServer } from '@apollo/server';
 import { resolvers, typeDefs } from './graphql';
 import { expressMiddleware } from '@apollo/server/express4';
-import userAuth from './middlewares/userAuth';
+import userAuth from './middlewares/user.auth.middleware';
 // import { typeDefs, resolvers } from '@/graphql/index';
 
 export default class Server {
@@ -59,9 +59,6 @@ export default class Server {
         },
       })
     );
-    app.use('/test', userAuth, (req, res) => {
-      return res.json('HELLO');
-    });
   }
 }
 
