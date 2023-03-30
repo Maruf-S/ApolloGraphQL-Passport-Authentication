@@ -1,7 +1,7 @@
 import { Application } from 'express';
 import AuthRoutes from './AuthRoutes';
 // import lessonRouter from './LessonRoutes';
-import userAuth from '../middlewares/userAuth';
+import userAuth from '../middlewares/user.auth.middleware';
 import * as path from 'path';
 export default class Routes {
   constructor(app: Application) {
