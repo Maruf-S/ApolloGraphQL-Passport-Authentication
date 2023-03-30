@@ -1,0 +1,44 @@
+scalar Date
+
+type User {
+  id: Int!
+  firstName: String!
+  lastName: String!
+  email: String!
+  roles: [String!]
+}
+type LoginResponse {
+  id: Int!
+  roles: [String!]
+  expiresAt: Date!
+  token: String!
+}
+type Query {
+  user(id: Int!): User
+  users: [User!]
+}
+type Mutation {
+  register(input: RegisterInput!): User
+  login(input: LoginInput!): LoginResponse
+}
+
+input RegisterInput {
+  firstName: String!
+  lastName: String!
+  password: String!
+  roleName: String!
+  email: String!
+}
+input LoginInput {
+  email: String!
+  password: String!
+}
+#   input CreateUserInput {
+#   id: ID
+#   name: String!
+#   email: String!
+# }
+enum Color {
+  RED
+  BLUE
+}

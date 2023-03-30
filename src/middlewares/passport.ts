@@ -9,10 +9,11 @@ const options = {
 };
 async function checkUserExists(id: number) {
   let user;
-  user = await AuthRepository.getUserById(id, {
-    id: true,
-    name: true,
-    password: true,
+  user = await prisma.user.findUnique({
+    include: { UsersAndRoles: true },
+    where: {
+      id,
+    },
   });
   return user;
 }

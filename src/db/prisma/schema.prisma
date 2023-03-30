@@ -8,28 +8,33 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+generator graphql {
+  provider   = "graphql-schema-generator"
+  createCRUD = "true"
+  // # output = "./generated" This is default path.
+}
+
 model User {
   id            Int             @id @default(autoincrement())
   firstName     String
   lastName      String
-  email         String
+  email         String          @unique
   password      String
   UsersAndRoles UsersAndRoles[]
 }
 
 model Role {
-  id            Int             @id @default(autoincrement())
-  roleName      String
+  roleName      String          @id @unique
   UsersAndRoles UsersAndRoles[]
 }
 
 model UsersAndRoles {
-  role       Role     @relation(fields: [roleId], references: [id])
-  roleId     Int
+  role       Role     @relation(fields: [roleName], references: [roleName])
+  roleName   String
   user       User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     Int
   assignedAt DateTime @default(now())
 
-  @@id([roleId, userId])
+  @@id([roleName, userId])
   @@map("users_roles")
 }
